@@ -151,7 +151,6 @@ describe('LinkedList', () => {
 
             list.append(3);
             list.append(7);
-
             expect(list.indexOf(3)).to.equal(0);
             expect(list.indexOf(7)).to.equal(1);
         });
