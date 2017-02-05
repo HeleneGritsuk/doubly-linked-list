@@ -41,8 +41,6 @@ class LinkedList {
 
     insertAt(index, data) {
         var node = new Node(data);
-
-
         //вставка в пустой список
         if(this.length==0) {
             this._head=node;
@@ -107,13 +105,26 @@ class LinkedList {
     }
 
     deleteAt(index) {
-        if (this.length==1) {
+        if ((this.length==1) && (index==0)) {
             this._head=null;
             this._tail=null;
             this.length=null;
         }
+        else if(index==0)
+            {
+                let currentnode=this._head;
+                currentnode=currentnode.next;
+                currentnode.prev=null;
+                this._head=currentnode;
+                this.length--;
+            }
+
+        else if(this.length==(index+1)) {
+            this._tail=this._tail.prev;
+            this._tail.next=null;
+            }
         else {
-            var currentnode=this._head;
+            let currentnode=this._head;
                 for (var i=0;i<index;i++)
                 {
                     currentnode=currentnode.next;
@@ -125,7 +136,6 @@ class LinkedList {
             currentnode=null;
             this.length--;
         }
-        /*удаление в начале и конце списка, обновление tail и head*/
         return this;
 
     }
@@ -135,7 +145,6 @@ class LinkedList {
         var buffer=this._tail;
         this._tail=this._head;
         this._head=buffer;
-        //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "конец", this._tail.data,this._head.data);
         var current=this._tail;
         for (var i=0;i<this.length;i++) {
             var prev=current.prev;
@@ -144,10 +153,6 @@ class LinkedList {
             current.next=prev;
             current=current.prev;
         }
-
-        //console.log("хвост", this._tail);
-        //console.log("голова", this._head);
-
         return this;
 
     }
@@ -156,9 +161,7 @@ class LinkedList {
         var solution=-1;
         var currentnode=this._head;
             for (var i=0;i<this.length;i++)
-            {
-                //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", currentnode.prev, currentnode.data);
-                
+            {             
                 if (currentnode.data==data)
                 {
                     solution=i;
