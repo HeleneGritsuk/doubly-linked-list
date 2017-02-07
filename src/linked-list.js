@@ -107,13 +107,26 @@ class LinkedList {
     }
 
     deleteAt(index) {
-        if (this.length==1) {
+        if ((this.length==1) && (index==0)) {
             this._head=null;
             this._tail=null;
             this.length=null;
         }
+        else if(index==0)
+            {
+                let currentnode=this._head;
+                currentnode=currentnode.next;
+                currentnode.prev=null;
+                this._head=currentnode;
+                this.length--;
+            }
+
+        else if(this.length==(index+1)) {
+            this._tail=this._tail.prev;
+            this._tail.next=null;
+            }
         else {
-            var currentnode=this._head;
+            let currentnode=this._head;
                 for (var i=0;i<index;i++)
                 {
                     currentnode=currentnode.next;
@@ -125,9 +138,7 @@ class LinkedList {
             currentnode=null;
             this.length--;
         }
-        /*удаление в начале и конце списка, обновление tail и head*/
-        return this;
-
+       return this;
     }
 
     reverse() {
