@@ -146,7 +146,6 @@ class LinkedList {
         var buffer=this._tail;
         this._tail=this._head;
         this._head=buffer;
-        //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "конец", this._tail.data,this._head.data);
         var current=this._tail;
         for (var i=0;i<this.length;i++) {
             var prev=current.prev;
@@ -155,10 +154,6 @@ class LinkedList {
             current.next=prev;
             current=current.prev;
         }
-
-        //console.log("хвост", this._tail);
-        //console.log("голова", this._head);
-
         return this;
 
     }
@@ -167,9 +162,7 @@ class LinkedList {
         var solution=-1;
         var currentnode=this._head;
             for (var i=0;i<this.length;i++)
-            {
-                //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", currentnode.prev, currentnode.data);
-                
+            {            
                 if (currentnode.data==data)
                 {
                     solution=i;
